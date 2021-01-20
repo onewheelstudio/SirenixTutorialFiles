@@ -1,4 +1,4 @@
-#Sirenix Tutorial Files
+#SirenixTutorialFiles
  A collection of files used in recent (after Dec 19) Devdog Tutorial videos.
  
  All videos can be found on the Devdog YouTube channel. 
