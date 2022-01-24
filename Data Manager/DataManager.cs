@@ -14,24 +14,20 @@
         [MenuItem("Tools/Data Manager")]
         private static void OpenEditor() => GetWindow<DataManager>();
 
-        //protected override void OnGUI()
-        //{
-        //    //draw menu tree for SOs and other assets
-        //    if (GUIUtils.SelectButtonList(ref selectedType, typesToDisplay))
-        //        this.ForceMenuTreeRebuild();
+    protected override void OnGUI()
+    {
+        //draw menu tree for SOs and other assets
+        if (GUIUtils.SelectButtonList(ref selectedType, typesToDisplay))
+            this.ForceMenuTreeRebuild();
 
-        //    base.OnGUI();
-        //}
+        base.OnGUI();
+    }
 
-        protected override OdinMenuTree BuildMenuTree()
+    protected override OdinMenuTree BuildMenuTree()
         {
             var tree = new OdinMenuTree();
-        foreach (var type in typesToDisplay)
-        {
-            tree.AddAllAssetsAtPath(type.Name, "Assets/", type, true, true);
 
-
-        }
+            tree.AddAllAssetsAtPath(selectedType.Name, "Assets/", selectedType, true, true);
             return tree;
         }
     }
