@@ -1,4 +1,4 @@
-﻿    using Sirenix.OdinInspector.Editor;
+﻿   using Sirenix.OdinInspector.Editor;
     using System;
     using System.Linq;
     using UnityEditor;
@@ -14,22 +14,20 @@
         [MenuItem("Tools/Data Manager")]
         private static void OpenEditor() => GetWindow<DataManager>();
 
-    protected override void OnGUI()
-    {
-        //draw menu tree for SOs and other assets
-        if (GUIUtils.SelectButtonList(ref selectedType, typesToDisplay))
-            this.ForceMenuTreeRebuild();
-
-        base.OnGUI();
-    }
-
-    protected override OdinMenuTree BuildMenuTree()
+        protected override void OnGUI()
         {
-            if (selectedType != null)
-            {
-                tree.AddAllAssetsAtPath(selectedType.Name, "Assets/", selectedType, true, true);
-                tree.SortMenuItemsByName(true);
-            }
+            //draw menu tree for SOs and other assets
+            if (GUIUtils.SelectButtonList(ref selectedType, typesToDisplay))
+                this.ForceMenuTreeRebuild();
+
+            base.OnGUI();
+        }
+
+         protected override OdinMenuTree BuildMenuTree()
+        {
+            var tree = new OdinMenuTree();
+            tree.AddAllAssetsAtPath(selectedType.Name, "Assets/", selectedType, true, true);
+            return tree;
         }
     }
 
