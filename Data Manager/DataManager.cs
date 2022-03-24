@@ -26,7 +26,8 @@
          protected override OdinMenuTree BuildMenuTree()
         {
             var tree = new OdinMenuTree();
-            tree.AddAllAssetsAtPath(selectedType.Name, "Assets/", selectedType, true, true);
+            if(selectedType != null)
+                tree.AddAllAssetsAtPath(selectedType.Name, "Assets/", selectedType, true, true);
             return tree;
         }
     }
